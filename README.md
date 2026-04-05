@@ -32,16 +32,6 @@ This is a static website built with:
 
 Simply open `index.html` in your browser, or use a local server:
 
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using PHP
-php -S localhost:8000
-
-# Using npx
-npx serve
-```
 
 Then visit `http://localhost:8000`
 
