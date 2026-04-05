@@ -60,9 +60,4 @@ Then visit `http://localhost:8000`
 
 GPL-3.0 License
 
-## Links
 
-- [GitHub Repository](https://github.com/codemonkx/PacTune)
-- [Releases](https://github.com/codemonkx/PacTune/releases)
-- [Issues](https://github.com/codemonkx/PacTune/issues)# PacTune-website
-# PacTune-website

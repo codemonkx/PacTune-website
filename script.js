@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
     const cursor = document.querySelector('.cursor');
     const cursorDot = document.querySelector('.cursor-dot');
     
@@ -97,10 +111,10 @@ const revealObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-document.querySelectorAll('.feature-card, .step-card, .tech-badge, .section-header').forEach((el, i) => {
+document.querySelectorAll('.feature-card, .step-card, .tech-badge, .section-header, .install-steps .step-card, .tech-visual, .cta-content, .footer-brand, .footer-links').forEach((el, i) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+    el.style.transition = `opacity 0.6s ease ${i * 0.05}s, transform 0.6s ease ${i * 0.05}s`;
     revealObserver.observe(el);
 });
 
@@ -131,6 +145,24 @@ if (heroRight) {
         heroRight.classList.add('revealed');
     }, 400);
 }
+
+// Parallax effect for background orbs
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const orbs = document.querySelectorAll('.gradient-orb');
+    orbs.forEach((orb, index) => {
+        const speed = 0.1 + (index * 0.05);
+        orb.style.transform = `translateY(${scrolled * speed}px)`;
+    });
+});
+
+// Smooth reveal for more elements
+document.querySelectorAll('.hero-title, .hero-description, .hero-buttons, .badge, .tech-tags, .requirements, .cta-content h2, .cta-content p, .btn-cta').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    revealObserver.observe(el);
+});
 
 const techContent = document.querySelector('.tech-content');
 if (techContent) {
